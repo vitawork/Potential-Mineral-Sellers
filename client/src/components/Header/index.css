@@ -1,18 +1,45 @@
-.app-m-header{
-    /* width: 50% !important; */
-    transition: all 0.5s cubic-bezier(0, 0, 0.2, 1) !important;
-    /* left: 250px; */
-    /* right: 0; */
+.app-m-header {
+  transition: all 0.5s cubic-bezier(0, 0, 0.2, 1) !important;
+  right: 0;
 }
-
 
 .app-m-header .ellipse-shape {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
-    overflow: hidden;
-    height: 100%;
-    width: 560px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  overflow: hidden;
+  height: 100%;
+  width: 560px;
 }
 
+.app-m-header .ellipse-shape:after {
+  content: "";
+  display: block;
+  width: 870px;
+  position: absolute;
+  top: -20px;
+  right: -300px;
+  height: 280px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 50% 0 0 50%;
+}
+
+.MuiAppBar-colorPrimary {
+    color: #fff;
+    background-color: #0E355D !important;
+}
+
+
+
+.app-m-header .app-logo img{
+    padding-right: 8px;
+}
+
+.app-m-header .app-logo h1{
+    font-size: 30px;
+    font-weight:bold;
+    color: rgb(238, 237, 237);
+    padding-top: 12px;
+}
