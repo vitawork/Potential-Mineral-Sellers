@@ -13,12 +13,12 @@ module.exports = {
       )
       .then(function(response) {
         var $ = cheerio.load(response.data);
-        // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% "+response.data);
-        $("div").each(function(i, element) {
-          console.log(
-            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " +
-              element
-          );
+        console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% "+response.data);
+        $("div.obitName").each(function(i, element) {
+          // console.log(
+          //   "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " +
+          //     element
+          // );
 
           var result = {};
           result.name = $(element)
@@ -36,7 +36,7 @@ module.exports = {
 
   ownersCsvToJson: (req, res) => {
     CSVtoJSON()
-      .fromFile("../csvFiles/LOD Data - Reeves.csv")
+      .fromFile("./csvFiles/LOD Data - Reeves.csv")
       .then(owners => {
         res.json(owners);
       });

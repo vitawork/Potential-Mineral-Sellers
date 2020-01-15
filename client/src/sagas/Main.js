@@ -11,17 +11,17 @@ const Scrape = async payload =>
 
 const Owners = async payload =>
   await MainAPI.ownersJson(payload)
-    .then(result => result)
+    .then(result => result.data)
     .catch(error => error);
 
 function* startScrapingMatchingGF({ payload }) {
   try {
-    // const obituaries = yield call(Scrape); //////////////
-    // console.log("ssssssssssssssss " + JSON.stringify(obituaries)); ///////////
+    const obituaries = yield call(Scrape); //////////////
+    console.log("ssssssssssssssss " + JSON.stringify(obituaries)); ///////////
 
    
-    const owners = yield call(Owners); //////////////
-    console.log("ssssssssssssssss " + JSON.stringify(owners)); ///////////
+    // const owners = yield call(Owners); //////////////
+    // console.log("ssssssssssssssss " + JSON.stringify(owners)); ///////////
 
 
   } catch (error) {
