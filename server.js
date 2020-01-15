@@ -21,7 +21,7 @@ const app = express();
 const routes = require('./routes/apiRoutes');
 
 // Set Listening Port
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(bodyParser.json());
@@ -77,3 +77,14 @@ app.listen(PORT, () => {
 if (process.env.NODE_ENV === 'test') {
   module.exports = app;
 }
+
+
+// const CSVtoJSON = require("csvtojson");
+
+
+
+// CSVtoJSON()
+// .fromFile("./csvFiles/LOD Data - Reeves.csv")
+// .then(owners => {
+//   console.log(JSON.stringify( owners));
+// });

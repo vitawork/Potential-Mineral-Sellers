@@ -48,7 +48,7 @@ class App extends React.Component {
           <main className="app-main-content-wrapper">
             <div className="app-main-content">
               <Switch>
-                  <Route path={`${match.url}/sample-page`}
+                  <Route path={`${match.url}/home`}
                          component={asyncComponent(() => import('./routes/Matches'))}/>
                 <Route component={asyncComponent(() => import('components/Error404'))}/>
               </Switch>

@@ -55,10 +55,10 @@ class App extends Component {
       if (authUser === null) {
         return <Redirect to={"/signin"} />;
       } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
-        return <Redirect to={"/app/sample-page"} />;
+        return <Redirect to={"/app/home"} />;
       } else {
         // return ( <Redirect to={initURL}/> );
-        return <Redirect to={"/app/sample-page"} />;//working without login
+        return <Redirect to={"/app/home"} />;//working without login
       }
     }
     const applyTheme = createMuiTheme(defaultTheme);

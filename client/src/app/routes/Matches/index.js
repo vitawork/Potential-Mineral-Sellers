@@ -1,6 +1,13 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { startScrapingMatching } from "../../../actions/MainActions";
 
 class Matches extends React.Component {
+ 
+  componentWillMount(){
+    this.props.startScrapingMatching();
+  }
+
 
   render() {
     return (
@@ -14,4 +21,9 @@ class Matches extends React.Component {
   }
 }
 
-export default Matches;
+// const mapStateToProps = ({ auth }) => {
+//   const { initURL, user } = auth;
+//   return { initURL, user };
+// };
+
+export default connect(null, { startScrapingMatching })(Matches);
