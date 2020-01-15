@@ -1,0 +1,18 @@
+.app-m-header{
+    /* width: 50% !important; */
+    transition: all 0.5s cubic-bezier(0, 0, 0.2, 1) !important;
+    /* left: 250px; */
+    /* right: 0; */
+}
+
+
+.app-m-header .ellipse-shape {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    overflow: hidden;
+    height: 100%;
+    width: 560px;
+}
+
