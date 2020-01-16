@@ -64,10 +64,10 @@ module.exports = {
                 : index;
 
             obituary.push({
-              name: index === -1 ? name : name.slice(0, index)
+              name: index === -1 ? name.toUpperCase() : name.slice(0, index).toUpperCase()
             });
           });
-          // obituary.push({ name: "SHAIDA JOHN H" });/////////////
+          obituary.push({ name: "SHAIDA JOHN H" });/////////////
           return obituary;
         });
         res.json(obituaries);
