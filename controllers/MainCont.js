@@ -13,7 +13,7 @@ module.exports = {
     // const MOVIE_ID = `tt6763664`;
     (async () => {
       /* Initiate the Puppeteer browser */
-      const browser = await puppeteer.launch({ headless: false });
+      const browser = await puppeteer.launch();
 
       const page = await browser.newPage();
 
@@ -47,88 +47,23 @@ module.exports = {
         //   process.exit(0);
         // }
 
-        // console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+ JSON.stringify(page.cookies()));
-
         let currentCookies = await page.cookies();
         // fs.writeFileSync("./cookies.json", JSON.stringify(currentCookies));
-        await page.evaluate(() => {
+
+        const obituaries = await page.evaluate(() => {
           const obituary = [];
+
           const nodes = document.querySelectorAll(".obitName");
           Array.from(nodes).forEach(node => {
-            // console.log(`&&&&&&&&&&&&&&&&&& ${JSON.stringify(node.innerText)}`);
             obituary.push({
               name: node.innerText
             });
           });
-          console.log(`jelouuuuuuu ${JSON.stringify(obituary)}`);
+          return obituary;
         });
+        res.json(obituaries);
       }
     })();
-
-    ////////////////////////////////////////////////////////////////////
-
-    // const request = require("request");
-    // request(
-    //   "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&date=1/14/2020&Page=1&EntriesPerPage=50",
-    //   function(error, response, body) {
-    //     // console.error('error:', error); // Print the error if one occurred
-    //     console.log("statusCodeeeeeeeeeeee:", response && response.statusCode); // Print the response status code if a response was received
-    //     console.log("bodyyyyyyyyyyyyyyyyy:", body); // Print the HTML for the Google homepage.
-    //   }
-    // ).auth('estebanmorellb@gmail.com', 'Sobral-59ml', false);
-
-    ///////////////////////////////////////////////////////////////////////
-    // var request = require("request");
-
-    // var j = request.jar();
-    // request = request.defaults({ jar : j }) //it will make the session default for every request
-    // //...
-    // request({
-    //     url:"https://www.legacy.com/obit-messenger/default.aspx?login=1&amp;pageid=5&amp;alertid=346270&amp;date=1/15/2020",
-    //     method:"POST",
-    //     form:{UNENTRY:"estebanmorellb@gmail.com",PWENTRY:"Sobral-59ml"}
-    // },
-    // function(error,response,body){
-
-    //     console.log("bodyyyyyyyyyyyyyyyyy:", body); // Print the HTML for the Google homepage.
-
-    //     //Do your logic here or even another request like
-    //     // request({
-    //     //     url:"<ANOTHER LINK>",
-    //     //     method:"GET",
-    //     // }, function(error, response, body){
-    //     //     //Some logic
-    //     // });
-    // });
-
-    /////////////////////////////////////////////////////////////////
-
-    var obituaries = [];
-    axios
-      .get(
-        "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&date=1/14/2020&Page=1&EntriesPerPage=50"
-      )
-      .then(function(response) {
-        var $ = cheerio.load(response.data);
-        // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% "+response.data);
-        $("div.obitName").each(function(i, element) {
-          // console.log(
-          //   "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " +
-          //     element
-          // );
-
-          var result = {};
-          result.name = $(element)
-            .find("a")
-            .text();
-
-          obituaries.push(result);
-        });
-
-        // res.json();
-
-        res.json(obituaries);
-      });
   },
 
   ownersCsvToJson: (req, res) => {

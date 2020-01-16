@@ -1,5 +1,6 @@
 //Main const
 export const START_SCRAPING_MATCHING_P = "start_scraping_matching_p";
+export const LOAD_OWNERS_AND_OBITUARIES = "load_owners_and_obituaries";
 
 // Customizer const
 export const TOGGLE_COLLAPSED_NAV = "toggle_collapse_menu";
