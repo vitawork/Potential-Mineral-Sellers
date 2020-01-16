@@ -12,7 +12,8 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         obituaries: action.payload.obituaries,
-        owners: action.payload.owners
+        owners: action.payload.owners,
+        matches: action.payload.matches
       };
     }
 

@@ -17,11 +17,22 @@ const Owners = async payload =>
 function* startScrapingMatchingGF({ payload }) {
   try {
     const obituaries = yield call(Scrape);
-    console.log("ssssssssssssssss " + JSON.stringify(obituaries)); ///////////
+    // console.log("ssssssssssssssss " + JSON.stringify(obituaries)); ///////////
 
     const owners = yield call(Owners);
     // console.log("ssssssssssssssss " + JSON.stringify(owners)); ///////////
-    yield put(loadOwnersAndObituaries({ obituaries, owners }));
+
+    const matches = [];
+    obituaries.map(obituary => {
+      console.log(obituary.name);//////////
+      owners.map(owner => {
+        if (owner.OwnerName == obituary.name) {
+          matches.push(owner);
+        }
+      });
+    });
+
+    yield put(loadOwnersAndObituaries({ obituaries, owners, matches }));
   } catch (error) {
     yield put(showAuthMessage(error));
     yield put(hideMessage());

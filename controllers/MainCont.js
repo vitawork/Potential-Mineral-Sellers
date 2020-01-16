@@ -67,6 +67,7 @@ module.exports = {
               name: index === -1 ? name : name.slice(0, index)
             });
           });
+          // obituary.push({ name: "SHAIDA JOHN H" });/////////////
           return obituary;
         });
         res.json(obituaries);
