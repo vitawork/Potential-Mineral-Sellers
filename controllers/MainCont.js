@@ -10,8 +10,6 @@ const cookies = require("./cookies.json");
 
 module.exports = {
   scrape: (req, res) => {
-    // const IMDB_URL = (movie_id) => `https://www.imdb.com/title/${movie_id}/`;
-    // const MOVIE_ID = `tt6763664`;
     (async () => {
       /* Initiate the Puppeteer browser */
       const browser = await puppeteer.launch();

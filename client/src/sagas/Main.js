@@ -1,5 +1,10 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
-import { showAuthMessage, hideMessage, loadOwnersAndObituaries, hideAuthLoader } from "actions";
+import {
+  showAuthMessage,
+  hideMessage,
+  loadOwnersAndObituaries,
+  hideAuthLoader
+} from "actions";
 import { START_SCRAPING_MATCHING_P } from "constants/ActionTypes";
 
 import MainAPI from "../api/MainAPI";
