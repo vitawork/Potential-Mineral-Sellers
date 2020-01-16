@@ -1,5 +1,5 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
-import { showAuthMessage, hideMessage, loadOwnersAndObituaries } from "actions";
+import { showAuthMessage, hideMessage, loadOwnersAndObituaries, hideAuthLoader } from "actions";
 import { START_SCRAPING_MATCHING_P } from "constants/ActionTypes";
 
 import MainAPI from "../api/MainAPI";
@@ -14,6 +14,11 @@ const Owners = async payload =>
     .then(result => result.data)
     .catch(error => error);
 
+const SaveMatchesCsv = async payload =>
+  await MainAPI.saveMatches(payload)
+    .then(result => result)
+    .catch(error => error);
+
 function* startScrapingMatchingGF({ payload }) {
   try {
     const obituaries = yield call(Scrape);
@@ -24,13 +29,16 @@ function* startScrapingMatchingGF({ payload }) {
 
     const matches = [];
     obituaries.map(obituary => {
-      console.log(obituary.name);//////////
       owners.map(owner => {
         if (owner.OwnerName == obituary.name) {
           matches.push(owner);
         }
       });
     });
+
+    yield call(SaveMatchesCsv, matches);
+
+    yield put(hideAuthLoader());
 
     yield put(loadOwnersAndObituaries({ obituaries, owners, matches }));
   } catch (error) {

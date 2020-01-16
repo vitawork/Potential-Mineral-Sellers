@@ -38,7 +38,7 @@ class ClientsTable extends Component {
             id1: key,
             id: prop[0],
             name: prop[4],
-            address: prop[5],
+            address: prop[6],
             well: prop[12],
             yearBegan: prop[13],
             sourceId: prop[2]

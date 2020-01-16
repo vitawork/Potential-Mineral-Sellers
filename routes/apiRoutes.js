@@ -5,7 +5,5 @@ module.exports = (app, upload) => {
 
   app.get("/api/ownersJson", controller.MainCont.ownersCsvToJson);
 
-  // app.post('/api/addUser', controller.auth.addUser);
-
-  // app.put('/api/user/:id', controller.auth.updateUser);
+  app.post("/api/saveMatchesCsv", controller.MainCont.saveMatchesCsv);
 };

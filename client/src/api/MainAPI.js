@@ -9,5 +9,10 @@ export default {
   // Gets the owners json  info
   ownersJson: function() {
     return axios.get("/api/ownersJson/");
+  },
+
+  // Save matches to a csv file
+  saveMatches: function(matchesData) {
+    return axios.post("/api/saveMatchesCsv/", matchesData);
   }
 };

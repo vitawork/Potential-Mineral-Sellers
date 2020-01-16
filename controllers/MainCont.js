@@ -1,10 +1,11 @@
 // const db = require ('../models/index');
 // require ('dotenv').config ();
 var axios = require("axios");
-var cheerio = require("cheerio");
+// var cheerio = require("cheerio");
 const CSVtoJSON = require("csvtojson");
+const JSONToCSV = require("json2csv").parse;
+const FileSystem = require("fs");
 const puppeteer = require("puppeteer");
-const fs = require("fs");
 const cookies = require("./cookies.json");
 
 module.exports = {
@@ -48,7 +49,7 @@ module.exports = {
         // }
 
         let currentCookies = await page.cookies();
-        // fs.writeFileSync("./cookies.json", JSON.stringify(currentCookies));
+        // FileSystem.writeFileSync("./cookies.json", JSON.stringify(currentCookies));
 
         const obituaries = await page.evaluate(() => {
           const obituary = [];
@@ -63,11 +64,18 @@ module.exports = {
                 ? name.indexOf("*")
                 : index;
 
-            obituary.push({
-              name: index === -1 ? name.toUpperCase() : name.slice(0, index).toUpperCase()
-            });
+            let finalName =
+              index === -1
+                ? name.toUpperCase()
+                : name.slice(0, index).toUpperCase();
+
+            if (obituary.indexOf(finalName) === -1) {
+              obituary.push({
+                name: finalName
+              });
+            }
           });
-          obituary.push({ name: "SHAIDA JOHN H" });/////////////
+          obituary.push({ name: "SHAIDA JOHN H" }); /////////////
           return obituary;
         });
         res.json(obituaries);
@@ -81,5 +89,14 @@ module.exports = {
       .then(owners => {
         res.json(owners);
       });
+  },
+
+  saveMatchesCsv: (req, res) => {
+    var csv = JSONToCSV(req.body, {
+      fields: ["SourceId", "OwnerName", "Address2", "Well", "YearBegan"]
+    });
+    FileSystem.writeFileSync("./csvFiles/PotencialSellers.csv", csv);
+
+    res.end();
   }
 };
