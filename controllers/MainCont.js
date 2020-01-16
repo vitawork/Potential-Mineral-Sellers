@@ -26,7 +26,7 @@ module.exports = {
         );
       } else {
         await page.goto(
-          "https://www.legacy.com/obit-messenger/default.aspx?login=1&pageid=5&alertid=346270&date=1/14/2020",
+          "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&date=1/14/2020&Page=1&EntriesPerPage=50",
           { waitUntil: "networkidle0" }
         );
 
@@ -37,20 +37,31 @@ module.exports = {
 
         await page.click("#signIn_btnSignIn");
 
-        await page.waitForNavigation({ waitUntil: "networkidle0" });
+        // await page.waitForNavigation({ waitUntil: "networkidle0" });
         await page.waitFor(15000);
 
-        try {
-          await page.waitFor('[data-click="profile_icon"]');
-        } catch (error) {
-          console.log("Fail login");
-          process.exit(0);
-        }
+        // try {
+        //   await page.waitFor('[data-click="profile_icon"]');
+        // } catch (error) {
+        //   console.log("Fail login");
+        //   process.exit(0);
+        // }
 
-        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+ JSON.stringify(page.cookies()));
 
         let currentCookies = await page.cookies();
-        fs.writeFileSync("./cookies.json", JSON.stringify(currentCookies));
+        // fs.writeFileSync("./cookies.json", JSON.stringify(currentCookies));
+        await page.evaluate(() => {
+          const obituary = [];
+          const nodes = document.querySelectorAll(".obitName");
+          Array.from(nodes).forEach(node => {
+            // console.log(`&&&&&&&&&&&&&&&&&& ${JSON.stringify(node.innerText)}`);
+            obituary.push({
+              name: node.innerText
+            });
+          });
+          console.log(`jelouuuuuuu ${JSON.stringify(obituary)}`);
+        });
       }
     })();
 
