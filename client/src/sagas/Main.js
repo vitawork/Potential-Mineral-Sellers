@@ -17,7 +17,7 @@ const Owners = async payload =>
 function* startScrapingMatchingGF({ payload }) {
   try {
     const obituaries = yield call(Scrape);
-    // console.log("ssssssssssssssss " + JSON.stringify(obituaries)); ///////////
+    console.log("ssssssssssssssss " + JSON.stringify(obituaries)); ///////////
 
     const owners = yield call(Owners);
     // console.log("ssssssssssssssss " + JSON.stringify(owners)); ///////////

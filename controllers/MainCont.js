@@ -55,8 +55,16 @@ module.exports = {
 
           const nodes = document.querySelectorAll(".obitName");
           Array.from(nodes).forEach(node => {
+            let name = node.innerText;
+
+            let index = name.indexOf("(");
+            index =
+              name.indexOf("*") !== -1 && name.indexOf("*") < index
+                ? name.indexOf("*")
+                : index;
+
             obituary.push({
-              name: node.innerText
+              name: index === -1 ? name : name.slice(0, index)
             });
           });
           return obituary;
