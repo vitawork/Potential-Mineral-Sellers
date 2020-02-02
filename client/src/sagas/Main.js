@@ -41,7 +41,7 @@ function* startScrapingMatchingGF({ payload }) {
       });
     });
 
-    yield call(SaveMatchesCsv, matches);
+    yield call(SaveMatchesCsv, { matches, obituaries });
 
     yield put(hideAuthLoader());
 

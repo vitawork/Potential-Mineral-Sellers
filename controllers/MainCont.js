@@ -73,7 +73,7 @@ module.exports = {
               });
             }
           });
-          obituary.push({ name: "SHAIDA JOHN H" }); /////////////
+          // obituary.push({ name: "SHAIDA JOHN H" }); /////////////
           return obituary;
         });
         res.json(obituaries);
@@ -90,10 +90,15 @@ module.exports = {
   },
 
   saveMatchesCsv: (req, res) => {
-    var csv = JSONToCSV(req.body, {
+    var csvMatches = JSONToCSV(req.body.matches, {
       fields: ["SourceId", "OwnerName", "Address2", "Well", "YearBegan"]
     });
-    FileSystem.writeFileSync("./csvFiles/PotencialSellers.csv", csv);
+    FileSystem.writeFileSync("./csvFiles/PotencialSellers.csv", csvMatches);
+
+    var csvObituaries = JSONToCSV(req.body.obituaries, {
+      fields: ["name"]
+    });
+    FileSystem.writeFileSync("./csvFiles/ScrapedObituaries.csv", csvObituaries);
 
     res.end();
   }
