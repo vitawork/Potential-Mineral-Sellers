@@ -20,12 +20,12 @@ module.exports = {
         await page.setCookie(...cookies);
 
         await page.goto(
-          "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&date=1/14/2020&Page=1&EntriesPerPage=50",
+          "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&Page=1&EntriesPerPage=1000",
           { waitUntil: "networkidle2" }
         );
       } else {
         await page.goto(
-          "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&date=1/14/2020&Page=1&EntriesPerPage=50",
+          "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&Page=1&EntriesPerPage=1000",
           { waitUntil: "networkidle0" }
         );
 
@@ -48,6 +48,11 @@ module.exports = {
 
         let currentCookies = await page.cookies();
         // FileSystem.writeFileSync("./cookies.json", JSON.stringify(currentCookies));
+
+        await page.goto(
+          "https://www.legacy.com/obit-messenger/alert-results.aspx?alertid=346270&Page=1&EntriesPerPage=1500",
+          { waitUntil: "networkidle0" }
+        );
 
         const obituaries = await page.evaluate(() => {
           const obituary = [];
@@ -73,7 +78,9 @@ module.exports = {
               });
             }
           });
-          // obituary.push({ name: "SHAIDA JOHN H" }); /////////////
+          obituary.push({ name: "BORING GEORGE A" }); /////////////
+          obituary.push({ name: "SHAIDA JOHN H" }); /////////////
+          obituary.push({ name: "OLIVER JESSIE FAY" }); /////////////
           return obituary;
         });
         res.json(obituaries);

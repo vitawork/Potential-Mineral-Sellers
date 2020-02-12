@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-
+const cors = require('cors');
 
 //require authentication packages
 const session = require('express-session');
@@ -21,7 +21,7 @@ const app = express();
 const routes = require('./routes/apiRoutes');
 
 // Set Listening Port
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(bodyParser.json());
