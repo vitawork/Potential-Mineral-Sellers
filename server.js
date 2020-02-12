@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const cors = require('cors');
+
 
 //require authentication packages
 const session = require('express-session');
@@ -57,21 +57,7 @@ else {
 // Setup app listener and database connection
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  db.sequelize
-    .sync()
-    .then(() => {
-      db.sequelize
-        .authenticate()
-        .then(() => {
-          console.log('Connection to database has been established successfully.');
-        })
-        .catch(err => {
-          console.error('Unable to connect to the database:', err);
-        });
-    })
-    .catch(err => {
-      console.error('Unable to connect to the database:', err);
-    });
+
 });
 
 if (process.env.NODE_ENV === 'test') {
