@@ -78,9 +78,11 @@ module.exports = {
               });
             }
           });
-          obituary.push({ name: "BORING GEORGE A" }); /////////////
-          obituary.push({ name: "SHAIDA JOHN H" }); /////////////
-          obituary.push({ name: "OLIVER JESSIE FAY" }); /////////////
+          // obituary.push({ name: "BORING GEORGE A" }); /////////////
+          obituary.push({ name: "ARMSTRONG JOHN COLE" }); /////////////
+          obituary.push({ name: "ARMSTRONG JOHN C" }); /////////////
+          // obituary.push({ name: "OLIVER JESSIE FAY" }); /////////////
+          // obituary.push({ name: "SHAIDA JOHN H" }); /////////////
           return obituary;
         });
         res.json(obituaries);
